@@ -3,30 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <Button
-        android:layout_width="480px"
-        android:layout_height="690px"
-        android:background="#a74646"
-        android:text="@string/myValue" />
+    android:orientation="vertical"
+    android:padding="30dp">
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="480px"
-        android:layout_height="690px"
-        android:text="test" />
-
-    <RadioButton
-        android:id="@+id/female"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="test2" />
+        android:layout_margin="20dp"
+        android:text="test1" />
 
-    <RadioButton
-        android:id="@+id/male"
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="test2" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="test3" />
+
 
 </LinearLayout>
