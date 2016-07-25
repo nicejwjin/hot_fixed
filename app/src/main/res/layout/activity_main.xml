@@ -4,20 +4,38 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <Button
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test 1" />
+        android:text="textSize"
+        android:textSize="30dp" />
 
-    <Button
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test 2" />
+        android:text="textColor"
+        android:textColor="#b60b58"
+        android:textSize="30dp" />
 
-    <Button
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:rotation="45"
-        android:text="test 3" />
+        android:text="textStype"
+        android:textSize="30dp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="typeface"
+        android:textSize="30dp"
+        android:typeface="serif" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:text="singleLineyfyffewifjweifjweifjweifj"
+        android:textSize="30dp" />
 
 </LinearLayout>
