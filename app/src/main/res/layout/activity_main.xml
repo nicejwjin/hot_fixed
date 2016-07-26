@@ -4,38 +4,55 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TextView
+    <EditText
+        android:id="@+id/Edit1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="textSize"
-        android:textSize="30dp" />
+        android:layout_margin="10dp"
+        android:hint="hint1" />
+
+    <EditText
+        android:id="@+id/Edit2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="hint2" />
+
+    <Button
+        android:id="@+id/BtnAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Add" />
+
+    <Button
+        android:id="@+id/BtnSub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Sub" />
+
+    <Button
+        android:id="@+id/BtnMul"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Multi" />
+
+    <Button
+        android:id="@+id/BtnDiv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Div" />
 
     <TextView
+        android:id="@+id/TextResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="textColor"
-        android:textColor="#b60b58"
-        android:textSize="30dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="textStype"
-        android:textSize="30dp"
-        android:textStyle="bold|italic" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="typeface"
-        android:textSize="30dp"
-        android:typeface="serif" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:text="singleLineyfyffewifjweifjweifjweifj"
+        android:layout_margin="10dp"
+        android:text="text"
+        android:textColor="#FF0000"
         android:textSize="30dp" />
 
 </LinearLayout>
