@@ -1,15 +1,19 @@
 package com.httpmeteorstartup.hot;
 
-import android.content.Intent;
+import android.app.Activity;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -20,70 +24,52 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * Created by jwjin on 7/27/16.
+ */
 
+public class BoardActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        setTitle("명화 선호도 투표");
+        setContentView(R.layout.board);
 
-        Button btnGoBoard = (Button) findViewById(R.id.btnGoBoard);
-        btnGoBoard.setOnClickListener(new View.OnClickListener() {
+        final EditText etWrite = (EditText) findViewById(R.id.etWrite);
+        final EditText etNickName = (EditText) findViewById(R.id.etNickName);
+
+        Button btnSend = (Button) findViewById(R.id.btnSend);
+        btnSend.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),
-                        BoardActivity.class);
-                startActivity(intent);
-            }
-        });
+                JSONObject obj = new JSONObject();
+                try {
+                    obj.put("url", "http://172.20.10.11:3000/sendMessage");
+                    if (etNickName.getText().length() <= 0) {
+                        TextView tmpTv = new TextView(BoardActivity.this);
+                        tmpTv.setText("you need a nickname!!");
+                        tmpTv.setBackgroundColor(Color.RED);
 
-        // 9개의 이미지 버튼 객체배열
-        ImageView image[] = new ImageView[9];
-        // 9개의 이미지버튼 ID 배열
-        Integer imageId[] = { R.id.iv1, R.id.iv2, R.id.iv3, R.id.iv4, R.id.iv5,
-                R.id.iv6, R.id.iv7, R.id.iv8, R.id.iv9 };
+                        Toast toast = new Toast(getApplicationContext());
+                        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                        toast.setDuration(Toast.LENGTH_LONG);
+                        toast.setView(tmpTv);
+                        toast.show();
 
-        final String imgName[] = { "독서하는 소녀", "꽃장식 모자 소녀", "부채를 든 소녀",
-                "이레느깡 단 베르양", "잠자는 소녀", "테라스의 두 자매", "피아노 레슨", "피아노 앞의 소녀들",
-                "해변에서" };
-
-        for (int i = 0; i < imageId.length; i++) {
-            final int index; // 주의! 꼭 필요함..
-            index = i;
-            image[index] = (ImageView) findViewById(imageId[index]);
-            image[index].setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    // TODO Auto-generated method stub
-                    // 투표수 증가.
-                    JSONObject obj = new JSONObject();
-                    try {
-                        obj.put("url", "http://172.20.10.11:3000/insertData");
-                        obj.put("imageName", imgName[index]);
                     }
-                    catch(Exception e) {
-                        Log.d("###", e.toString());
+                    else {
+                        obj.put("nickname", etNickName.getText());
+                        obj.put("message", etWrite.getText());
                     }
-
-                    new HTTPAsyncTask().execute(obj);
-                    Toast.makeText(getApplicationContext(),
-                            imgName[index] + "득표",
-                            Toast.LENGTH_SHORT).show();
                 }
-            });
-        }
+                catch(Exception e) {
+                    Log.d("###", e.toString());
+                }
 
-        Button btnFinish = (Button) findViewById(R.id.btnResult);
-        btnFinish.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),
-                        ResultActivity.class);
-                startActivity(intent);
+                new HTTPAsyncTask().execute(obj);
+
             }
         });
-
     }
     private class HTTPAsyncTask extends AsyncTask<JSONObject, Void, JSONObject> {
         @Override
@@ -101,8 +87,26 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(JSONObject obj) {
             try {
-//                JSONObject tmp = new JSONObject(obj.get("result"));
-                Log.d("###", (String) obj.get("result"));
+                JSONObject tmpObj = new JSONObject((String) obj.get("result"));
+                JSONArray tmpArr = tmpObj.getJSONArray("array");
+                Log.d("### result", tmpArr.toString());
+
+                LinearLayout llMessages = (LinearLayout) findViewById(R.id.llMessages);
+                llMessages.removeAllViews();
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+                TextView tvMessage = null;
+                for (int i = 0; i < tmpArr.length(); i++) {
+                    tvMessage = new TextView(BoardActivity.this);
+                    tvMessage.setLayoutParams(params);
+                    String tmpString = "[" + tmpArr.getJSONObject(i).get("nickname").toString() + "]: "
+                            + tmpArr.getJSONObject(i).get("message").toString();
+                    tvMessage.setText(tmpString);
+//                    tvMessage.setText("haha");
+                    llMessages.addView(tvMessage);
+                }
+
+
+
             }
             catch(Exception e) {
                 Log.d("###", e.toString());
