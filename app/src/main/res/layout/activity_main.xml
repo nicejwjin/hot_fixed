@@ -4,55 +4,24 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/Edit1"
+    <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="hint1" />
+        android:checked="true" />
 
-    <EditText
-        android:id="@+id/Edit2"
+    <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="hint2" />
+        android:checked="false" />
 
-    <Button
-        android:id="@+id/BtnAdd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Add" />
-
-    <Button
-        android:id="@+id/BtnSub"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Sub" />
-
-    <Button
-        android:id="@+id/BtnMul"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Multi" />
-
-    <Button
-        android:id="@+id/BtnDiv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Div" />
-
-    <TextView
-        android:id="@+id/TextResult"
+    <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="text"
-        android:textColor="#FF0000"
-        android:textSize="30dp" />
+        android:checked="true" />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false" />
 
 </LinearLayout>
