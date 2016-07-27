@@ -34,7 +34,7 @@ public class ResultActivity extends Activity {
 
         JSONObject obj = new JSONObject();
         try {
-            obj.put("url", "http://172.20.10.11:3000/findData");
+            obj.put("url", "http://52.78.90.34:3000/findData");
         }
         catch(Exception e) {
             Log.d("###", e.toString());

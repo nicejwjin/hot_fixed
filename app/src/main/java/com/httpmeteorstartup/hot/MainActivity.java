@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
                     // 투표수 증가.
                     JSONObject obj = new JSONObject();
                     try {
-                        obj.put("url", "http://172.20.10.11:3000/insertData");
+                        obj.put("url", "http://52.78.90.34:3000/insertData");
                         obj.put("imageName", imgName[index]);
                     }
                     catch(Exception e) {
